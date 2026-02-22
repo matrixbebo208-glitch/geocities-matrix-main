@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم | GeoCities Matrix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-[#00ff41] p-4">
+
+    <div class="flex justify-between items-center border-b border-green-900 pb-4 mb-6">
+        <h1 class="text-2xl font-black matrix-glow">MATRIX DASHBOARD</h1>
+        <div class="text-xs text-left">
+            <p>المستخدم: <span class="text-white">Admin</span></p>
+            <p>الرصيد: <span class="text-white">30 EGP</span></p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <div class="lg:col-span-2 space-y-6">
+            <div class="matrix-border p-6 rounded-lg bg-black/80">
+                <h3 class="mb-4 text-lg font-bold">🚀 مركز رفع الملفات</h3>
+                <div class="border-2 border-dashed border-green-900 p-10 text-center rounded-lg hover:border-green-400 transition cursor-pointer">
+                    <input type="file" id="fileInput" class="hidden" accept=".zip,.php">
+                    <label for="fileInput" class="cursor-pointer">
+                        <p class="text-sm">اسحب ملف الـ <span class="font-bold">ZIP</span> أو <span class="font-bold">PHP</span> هنا</p>
+                        <p class="text-[10px] text-gray-500 mt-2 italic">الحد الأقصى: 10 ميجا بايت</p>
+                    </label>
+                </div>
+                <button onclick="uploadToMatrix()" class="w-full mt-4 bg-green-600 text-black font-bold py-2 rounded hover:bg-white transition">بدء الرفع والنشر (Deploy)</button>
+            </div>
+
+            <div class="matrix-border p-4 rounded-lg">
+                <p class="text-xs mb-2 text-gray-500 uppercase tracking-widest">Quick Editor (index.php)</p>
+                <textarea class="w-full h-64 bg-black border border-green-900 text-green-400 p-4 font-mono text-sm outline-none focus:border-green-400" placeholder="// اكتب كودك هنا مباشرة..."></textarea>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <div class="matrix-border p-4 rounded-lg flex flex-col h-[400px]">
+                <h3 class="text-sm font-bold border-b border-green-900 pb-2 mb-4">🤖 اسأل فوزي (AI Support)</h3>
+                <div id="chat-box" class="flex-1 overflow-y-auto text-xs space-y-3 mb-4 p-2">
+                    <p class="text-blue-400"><b>فوزي:</b> نورت المصفوفة يا وحش! ارفع ملفاتك ولو عصلجت معاك أنا موجود. 😉</p>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="user-msg" class="flex-1 bg-black border border-green-900 p-2 text-xs" placeholder="أمرك يا ميتريكس...">
+                    <button onclick="talkToFawzy()" class="bg-green-600 text-black px-3 font-bold text-xs">إرسال</button>
+                </div>
+            </div>
+
+            <div class="matrix-border p-4 rounded-lg bg-green-900/10">
+                <h3 class="text-sm font-bold mb-2">📊 إحصائيات الموقع</h3>
+                <p class="text-[10px]">الزيارات اليوم: <span class="text-white">124</span></p>
+                <p class="text-[10px]">استهلاك الـ CPU: <span class="text-white">1.2%</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function talkToFawzy() {
+            let msg = document.getElementById('user-msg').value;
+            let box = document.getElementById('chat-box');
+            if(msg) {
+                box.innerHTML += `<p class="text-white"><b>أنت:</b> ${msg}</p>`;
+                setTimeout(() => {
+                    box.innerHTML += `<p class="text-blue-400"><b>فوزي:</b> سيبلي الطلب ده وأنا هظبطهولك، المهم الـ 30 جنيه اتحولت؟ 😂</p>`;
+                    box.scrollTop = box.scrollHeight;
+                }, 1000);
+                document.getElementById('user-msg').value = '';
+            }
+        }
+
+        function uploadToMatrix() {
+            alert("جارٍ تشفير الملف ورفعه إلى سيرفرات InfinityFree... استعد!");
+        }
+    </script>
+</body>
+</html>
+
