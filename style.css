@@ -1,0 +1,64 @@
+/* Geocities Matrix - Global Styles */
+body {
+    background-color: #000;
+    color: #00ff41;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Matrix Background Effect (اختياري لو عايز تضيف لمحة شبكة) */
+body::before {
+    content: " ";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: -1;
+}
+
+/* Glow Effect */
+.matrix-glow {
+    text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+}
+
+/* Terminal Border */
+.matrix-border {
+    border: 2px solid #00ff41;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    background: rgba(0, 10, 0, 0.9);
+}
+
+/* Buttons */
+.btn-matrix {
+    background-color: #00ff41;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-matrix:hover {
+    background-color: #fff;
+    box-shadow: 0 0 20px #fff;
+    transform: scale(1.05);
+}
+
+/* Inputs */
+input {
+    background: #000;
+    border: 1px solid #005510;
+    color: #00ff41;
+    padding: 10px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #00ff41;
+    box-shadow: 0 0 5px #00ff41;
+}
+
