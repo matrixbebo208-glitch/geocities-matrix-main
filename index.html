@@ -2,26 +2,28 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>GeoCities Matrix | النظام قيد التشغيل</title>
+    <title>GeoCities Matrix | النظام المتكامل</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body { background: #000; color: #00ff41; font-family: 'Courier New', monospace; }
-        .matrix-glow { text-shadow: 0 0 10px #00ff41; }
-        .terminal-box { border: 1px solid #00ff41; background: rgba(0, 20, 0, 0.9); }
+        /* إضافة أنيميشن بسيط للانتقال بين الصفحات */
+        .page-fade { transition: opacity 0.5s ease-in-out; }
+        .hidden { display: none; }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-5">
 
-    <div class="terminal-box p-10 rounded-lg max-w-2xl w-full text-center">
-        <h1 class="text-4xl font-bold matrix-glow mb-4 uppercase tracking-tighter">GEOCITIES MATRIX</h1>
+    <div id="landing-section" class="page-fade terminal-box p-10 rounded-lg max-w-2xl w-full text-center border border-green-500 bg-black/90">
+        <h1 class="text-4xl font-bold matrix-glow mb-4 uppercase tracking-tighter text-[#00ff41]">GEOCITIES MATRIX</h1>
         <p class="mb-8 text-gray-400">نظام الاستضافة الأكثر أماناً.. بـ 30 جنيه بس.</p>
         
         <div class="bg-black p-5 rounded border border-green-900 mb-6 text-right">
             <p class="text-xs text-green-700 mb-2">System Status: <span class="text-green-400">Online</span></p>
             <p class="text-xs text-green-700">Admin: <span class="text-green-400">Matrix</span></p>
+            <p class="text-xs text-green-700">Security: <span class="text-green-400">Active</span></p>
         </div>
 
-        <button onclick="location.href='login.html'" class="bg-green-600 text-black font-bold py-3 px-8 rounded-full hover:bg-white transition-all shadow-lg shadow-green-500/50">
+        <button onclick="showLogin()" class="bg-green-600 text-black font-bold py-3 px-8 rounded-full hover:bg-white transition-all shadow-lg shadow-green-500/50">
             دخول للمصفوفة 🛰️
         </button>
         
@@ -30,6 +32,51 @@
         </div>
     </div>
 
+    <div id="login-section" class="page-fade hidden p-8 rounded-lg w-96 bg-black border border-green-500 shadow-lg shadow-green-900/20">
+        <h2 class="text-2xl font-bold mb-6 text-center tracking-widest text-[#00ff41]">إثبات الهوية</h2>
+        <form id="loginForm">
+            <div class="mb-4">
+                <label class="block text-xs mb-2 text-green-800 tracking-widest uppercase font-bold">USERNAME</label>
+                <input type="text" id="user" class="w-full p-2 rounded bg-black border border-green-900 text-[#00ff41] text-sm focus:border-[#00ff41] outline-none">
+            </div>
+            <div class="mb-6">
+                <label class="block text-xs mb-2 text-green-800 tracking-widest uppercase font-bold">ACCESS CODE</label>
+                <input type="password" id="pass" class="w-full p-2 rounded bg-black border border-green-900 text-[#00ff41] text-sm focus:border-[#00ff41] outline-none">
+            </div>
+            <button type="button" onclick="checkAuth()" class="w-full bg-green-600 text-black font-bold py-2 rounded hover:bg-white transition uppercase tracking-widest">تخطي الجدار الناري 🛡️</button>
+            
+            <button type="button" onclick="showLanding()" class="w-full mt-3 text-[10px] text-gray-500 hover:text-green-500 transition">← العودة للرئيسية</button>
+        </form>
+        <p class="text-[10px] mt-6 text-center text-gray-600 italic">للحصول على حساب: حول 30ج لـ 01224815487</p>
+    </div>
+
+    <script>
+        // وظيفة إظهار صفحة اللوجين
+        function showLogin() {
+            document.getElementById('landing-section').classList.add('hidden');
+            document.getElementById('login-section').classList.remove('hidden');
+        }
+
+        // وظيفة العودة للرئيسية
+        function showLanding() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('landing-section').classList.remove('hidden');
+        }
+
+        // وظيفة التحقق من الدخول
+        function checkAuth() {
+            const user = document.getElementById('user').value;
+            const pass = document.getElementById('pass').value;
+
+            // كود التحقق (Admin Matrix)
+            if(user === "admin" && pass === "matrix30") {
+                alert("تم اختراق الجدار الناري بنجاح.. جاري التحميل");
+                // هنا هتحط رابط صفحة الداشبورد لما تعملها
+                window.location.href = "dashboard.html"; 
+            } else {
+                alert("⚠️ خطأ في البيانات! السيستم رصد محاولة دخولك.");
+            }
+        }
+    </script>
 </body>
 </html>
-
