@@ -2,28 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoCities Matrix | النظام المتكامل</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* إضافة أنيميشن بسيط للانتقال بين الصفحات */
-        .page-fade { transition: opacity 0.5s ease-in-out; }
-        .hidden { display: none; }
+        /* أنيميشن بسيط للانتقال */
+        .page-fade { transition: all 0.5s ease-in-out; }
+        .hidden { display: none; opacity: 0; }
+        body { background-color: #000; color: #00ff41; font-family: 'Courier New', monospace; }
+        .matrix-glow { text-shadow: 0 0 10px #00ff41; }
+        .terminal-box { border: 1px solid #00ff41; background: rgba(0, 20, 0, 0.9); box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-5">
 
-    <div id="landing-section" class="page-fade terminal-box p-10 rounded-lg max-w-2xl w-full text-center border border-green-500 bg-black/90">
-        <h1 class="text-4xl font-bold matrix-glow mb-4 uppercase tracking-tighter text-[#00ff41]">GEOCITIES MATRIX</h1>
+    <div id="landing-section" class="page-fade terminal-box p-10 rounded-lg max-w-2xl w-full text-center">
+        <h1 class="text-4xl font-bold matrix-glow mb-4 uppercase tracking-tighter">GEOCITIES MATRIX</h1>
         <p class="mb-8 text-gray-400">نظام الاستضافة الأكثر أماناً.. بـ 30 جنيه بس.</p>
         
-        <div class="bg-black p-5 rounded border border-green-900 mb-6 text-right">
-            <p class="text-xs text-green-700 mb-2">System Status: <span class="text-green-400">Online</span></p>
+        <div class="bg-black p-5 rounded border border-green-900 mb-6 text-right font-mono">
+            <p class="text-xs text-green-700 mb-2">System Status: <span class="text-green-400 animate-pulse">Online</span></p>
             <p class="text-xs text-green-700">Admin: <span class="text-green-400">Matrix</span></p>
-            <p class="text-xs text-green-700">Security: <span class="text-green-400">Active</span></p>
+            <p class="text-xs text-green-700">Node: <span class="text-green-400">win8184.site4now.net</span></p>
         </div>
 
-        <button onclick="showLogin()" class="bg-green-600 text-black font-bold py-3 px-8 rounded-full hover:bg-white transition-all shadow-lg shadow-green-500/50">
+        <button onclick="showLogin()" class="bg-green-600 text-black font-bold py-3 px-8 rounded-full hover:bg-white transition-all shadow-lg shadow-green-500/50 uppercase tracking-widest">
             دخول للمصفوفة 🛰️
         </button>
         
@@ -32,49 +36,94 @@
         </div>
     </div>
 
-    <div id="login-section" class="page-fade hidden p-8 rounded-lg w-96 bg-black border border-green-500 shadow-lg shadow-green-900/20">
-        <h2 class="text-2xl font-bold mb-6 text-center tracking-widest text-[#00ff41]">إثبات الهوية</h2>
+    <div id="login-section" class="page-fade hidden p-8 rounded-lg w-full max-w-md bg-black border border-green-500 shadow-lg shadow-green-900/40">
+        <h2 class="text-2xl font-bold mb-6 text-center tracking-widest matrix-glow">إثبات الهوية</h2>
         <form id="loginForm">
             <div class="mb-4">
                 <label class="block text-xs mb-2 text-green-800 tracking-widest uppercase font-bold">USERNAME</label>
-                <input type="text" id="user" class="w-full p-2 rounded bg-black border border-green-900 text-[#00ff41] text-sm focus:border-[#00ff41] outline-none">
+                <input type="text" id="user" class="w-full p-3 rounded bg-black border border-green-900 text-[#00ff41] text-sm focus:border-[#00ff41] outline-none transition-all">
             </div>
             <div class="mb-6">
                 <label class="block text-xs mb-2 text-green-800 tracking-widest uppercase font-bold">ACCESS CODE</label>
-                <input type="password" id="pass" class="w-full p-2 rounded bg-black border border-green-900 text-[#00ff41] text-sm focus:border-[#00ff41] outline-none">
+                <input type="password" id="pass" class="w-full p-3 rounded bg-black border border-green-900 text-[#00ff41] text-sm focus:border-[#00ff41] outline-none transition-all">
             </div>
-            <button type="button" onclick="checkAuth()" class="w-full bg-green-600 text-black font-bold py-2 rounded hover:bg-white transition uppercase tracking-widest">تخطي الجدار الناري 🛡️</button>
+            <button type="button" id="loginBtn" onclick="checkAuth()" class="w-full bg-green-600 text-black font-bold py-3 rounded hover:bg-white transition uppercase tracking-widest">
+                تخطي الجدار الناري 🛡️
+            </button>
             
-            <button type="button" onclick="showLanding()" class="w-full mt-3 text-[10px] text-gray-500 hover:text-green-500 transition">← العودة للرئيسية</button>
+            <button type="button" onclick="showLanding()" class="w-full mt-4 text-[10px] text-gray-500 hover:text-green-500 transition">← العودة للرئيسية</button>
         </form>
-        <p class="text-[10px] mt-6 text-center text-gray-600 italic">للحصول على حساب: حول 30ج لـ 01224815487</p>
+        <p class="text-[10px] mt-6 text-center text-gray-600 italic font-mono">
+            SECURITY LEVEL: HIGH | ENCRYPTION: ACTIVE
+        </p>
     </div>
 
     <script>
         // وظيفة إظهار صفحة اللوجين
         function showLogin() {
-            document.getElementById('landing-section').classList.add('hidden');
-            document.getElementById('login-section').classList.remove('hidden');
+            const landing = document.getElementById('landing-section');
+            const login = document.getElementById('login-section');
+            landing.style.opacity = '0';
+            setTimeout(() => {
+                landing.classList.add('hidden');
+                login.classList.remove('hidden');
+                setTimeout(() => { login.style.opacity = '1'; }, 50);
+            }, 500);
         }
 
         // وظيفة العودة للرئيسية
         function showLanding() {
-            document.getElementById('login-section').classList.add('hidden');
-            document.getElementById('landing-section').classList.remove('hidden');
+            const landing = document.getElementById('landing-section');
+            const login = document.getElementById('login-section');
+            login.style.opacity = '0';
+            setTimeout(() => {
+                login.classList.add('hidden');
+                landing.classList.remove('hidden');
+                setTimeout(() => { landing.style.opacity = '1'; }, 50);
+            }, 500);
         }
 
-        // وظيفة التحقق من الدخول
-        function checkAuth() {
+        // وظيفة التحقق من الدخول بالربط مع سيرفر SmarterASP
+        async function checkAuth() {
             const user = document.getElementById('user').value;
             const pass = document.getElementById('pass').value;
+            const btn = document.getElementById('loginBtn');
 
-            // كود التحقق (Admin Matrix)
-            if(user === "admin" && pass === "matrix30") {
-                alert("تم اختراق الجدار الناري بنجاح.. جاري التحميل");
-                // هنا هتحط رابط صفحة الداشبورد لما تعملها
-                window.location.href = "dashboard.html"; 
-            } else {
-                alert("⚠️ خطأ في البيانات! السيستم رصد محاولة دخولك.");
+            if(!user || !pass) {
+                alert("برجاء إدخال بيانات الوصول!");
+                return;
+            }
+
+            // تحديث حالة الزرار
+            btn.innerHTML = "جاري الاختراق... ⚡";
+            btn.disabled = true;
+
+            try {
+                // الرابط الخاص بسيرفرك اللي في الصورة
+                const serverUrl = 'http://matrixjo-001-site1.itempurl.com/gateway.php';
+                
+                const response = await fetch(serverUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `u=${encodeURIComponent(user)}&p=${encodeURIComponent(pass)}`
+                });
+
+                const data = await response.json();
+
+                if(data.status === "success") {
+                    alert("🚀 " + data.message);
+                    // التوجيه للوحة التحكم
+                    window.location.href = "dashboard.html"; 
+                } else {
+                    alert("⚠️ " + data.message);
+                    btn.innerHTML = "تخطي الجدار الناري 🛡️";
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error(err);
+                alert("❌ عطل في الاتصال بالمصفوفة! تأكد من إيقاف Password Protection في SmarterASP.");
+                btn.innerHTML = "تخطي الجدار الناري 🛡️";
+                btn.disabled = false;
             }
         }
     </script>
